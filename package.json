@@ -1,0 +1,26 @@
+{
+  "name": "database-uni-chain",
+  "version": "1.0.0",
+  "description": "Database and UI for UNI Chain - User Profile & NFT Certificates",
+  "private": true,
+  "workspaces": [
+    "web",
+    "db"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "db:migrate": "pnpm --filter db migrate",
+    "db:studio": "pnpm --filter db studio",
+    "db:reset": "pnpm --filter db reset"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@9.1.2+sha256.19c17528f9ca20bd442e4ca42f00f1b9808a9cb419383cd04ba32ef19322aba7"
+}

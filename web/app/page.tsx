@@ -124,12 +124,30 @@ export default function Home() {
           {/* User Info */}
           <div className="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
             <h3 className="font-semibold text-gray-800 mb-3">👤 Profile Information</h3>
+            <div className="flex items-center gap-4 mb-3">
+              {user.avatarCid ? (
+                <img 
+                  src={`https://gateway.pinata.cloud/ipfs/${user.avatarCid}`} 
+                  alt="Avatar" 
+                  className="w-16 h-16 rounded-full object-cover border-2 border-green-300"
+                />
+              ) : (
+                <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-2xl">
+                  👤
+                </div>
+              )}
+              <div className="flex-1">
+                <h4 className="font-medium text-gray-800">
+                  {user.displayName || 'No display name set'}
+                </h4>
+                <p className="text-sm text-gray-600">
+                  {user.school || 'No school set'} {user.className && `• ${user.className}`}
+                </p>
+              </div>
+            </div>
             <div className="text-sm text-gray-700 space-y-2">
               <p><strong>User ID:</strong> {user.id.slice(0, 8)}...</p>
-              <p><strong>Display Name:</strong> {user.displayName || 'Not set'}</p>
               <p><strong>Default Wallet:</strong> {user.defaultWallet?.slice(0, 6)}...{user.defaultWallet?.slice(-4)}</p>
-              <p><strong>School:</strong> {user.school || 'Not set'}</p>
-              <p><strong>Class:</strong> {user.className || 'Not set'}</p>
               <p><strong>Birth Year:</strong> {user.birthYear || 'Not set'}</p>
             </div>
           </div>
@@ -178,6 +196,12 @@ export default function Home() {
           {/* Actions */}
           <div className="space-y-3">
             <ConnectButton />
+            <button
+              onClick={() => window.location.href = '/profile'}
+              className="w-full px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+            >
+              ✏️ Edit Profile
+            </button>
             <button
               onClick={loadUserData}
               className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"

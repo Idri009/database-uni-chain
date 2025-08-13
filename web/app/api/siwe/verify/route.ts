@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SiweMessage } from 'siwe';
 import { prisma } from '@/lib/prisma';
-import { createSessionCookie } from '@/lib/session';
+import { createSessionToken } from '@/lib/session';
 
 export async function POST(req: NextRequest) {
   try {
@@ -79,7 +79,9 @@ export async function POST(req: NextRequest) {
       userId: user.id,
       address: address,
     };
-    
+
+    console.log('🔧 Creating session for user:', sessionData);
+
     const response = NextResponse.json({
       success: true,
       user: {
@@ -90,9 +92,20 @@ export async function POST(req: NextRequest) {
       },
     });
     
-    // Set session cookie
-    const sessionCookie = createSessionCookie(sessionData);
-    response.headers.set('Set-Cookie', sessionCookie);
+    // Set session cookie using NextResponse.cookies.set()
+    const sessionToken = createSessionToken(sessionData);
+    const maxAge = 7 * 24 * 60 * 60; // 7 days in seconds
+    const isProduction = process.env.NODE_ENV === 'production';
+    
+    response.cookies.set('session', sessionToken, {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: 'lax',
+      maxAge: maxAge,
+      path: '/',
+    });
+    
+        console.log('🍪 Session cookie set with NextResponse.cookies.set');
     
     // Clear nonce cookie
     response.cookies.delete('siwe_nonce');

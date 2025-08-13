@@ -30,6 +30,7 @@ export function getSession(req: NextRequest): SessionData | null {
 export function createSessionCookie(data: SessionData): string {
   const token = createSessionToken(data);
   const maxAge = 7 * 24 * 60 * 60; // 7 days in seconds
+  const isProduction = process.env.NODE_ENV === 'production';
   
-  return `session=${token}; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}; Path=/`;
+  return `session=${token}; HttpOnly; ${isProduction ? 'Secure;' : ''} SameSite=Lax; Max-Age=${maxAge}; Path=/`;
 }

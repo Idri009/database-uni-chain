@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid()) @db.Uuid
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  defaultWallet String?  @db.VarChar(42)
+  displayName   String?  @db.VarChar(100)
+  avatarCid     String?  @db.VarChar(100) // IPFS CID for avatar
+  birthYear     Int?
+  school        String?  @db.VarChar(200)
+  className     String?  @db.VarChar(100)
+
+  // Relations
+  wallets  Wallet[]
+  userNfts UserNft[]
+
+  @@map("users")
+}
+
+model Wallet {
+  address     String    @id @db.VarChar(42) // Ethereum address (42 chars with 0x)
+  userId      String    @db.Uuid
+  ensName     String?   @db.VarChar(100)
+  verifiedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("wallets")
+}
+
+model NftCollection {
+  chainId         Int    @db.Integer
+  contractAddress String @db.VarChar(42)
+  standard        String @db.VarChar(20) // ERC721, ERC1155, etc.
+  name            String? @db.VarChar(200)
+  symbol          String? @db.VarChar(50)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  nfts     Nft[]
+  userNfts UserNft[]
+
+  @@id([chainId, contractAddress])
+  @@map("nft_collections")
+}
+
+model Nft {
+  chainId         Int    @db.Integer
+  contractAddress String @db.VarChar(42)
+  tokenId         String @db.VarChar(100) // Support large token IDs
+  metadataUri     String? @db.Text
+  metadataJson    Json?   @db.JsonB
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  collection NftCollection @relation(fields: [chainId, contractAddress], references: [chainId, contractAddress], onDelete: Cascade)
+  userNfts   UserNft[]
+
+  @@id([chainId, contractAddress, tokenId])
+  @@index([contractAddress, tokenId])
+  @@map("nfts")
+}
+
+model UserNft {
+  userId          String   @db.Uuid
+  chainId         Int      @db.Integer
+  contractAddress String   @db.VarChar(42)
+  tokenId         String   @db.VarChar(100)
+  balance         Decimal  @default(1) @db.Decimal(78, 0) // Support large numbers for ERC1155
+  lastSeenAt      DateTime @default(now())
+  createdAt       DateTime @default(now())
+
+  // Relations
+  user       User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  collection NftCollection @relation(fields: [chainId, contractAddress], references: [chainId, contractAddress], onDelete: Cascade)
+  nft        Nft           @relation(fields: [chainId, contractAddress, tokenId], references: [chainId, contractAddress, tokenId], onDelete: Cascade)
+
+  @@id([userId, chainId, contractAddress, tokenId])
+  @@index([userId, lastSeenAt])
+  @@map("user_nfts")
+}

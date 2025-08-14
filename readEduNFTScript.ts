@@ -6,10 +6,10 @@ import axios from "axios";
 import eduHubJson from "./EduHub.json";
 
 // --- CONFIGURATION ---
-const ALCHEMY_API_KEY = "..";
+const ALCHEMY_API_KEY = "vmbHGNAV4NKw9V2tleUXODo4NDDUQpiy";
 const ALCHEMY_NETWORK = "base-sepolia"; 
 const eduHubAddress = "0x62cd4e0C5B0D4587861a21710ed15ba1823a6341";
-const userAddress = "..";
+const userAddress = "0x286db307079C9C92b55D20b33e4eAB6d2A588E54";
 
 const provider = new ethers.JsonRpcProvider(`https://${ALCHEMY_NETWORK}.g.alchemy.com/v2/${ALCHEMY_API_KEY}`);
 

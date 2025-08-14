@@ -331,7 +331,7 @@ export default function ProfilePage() {
               <h1 className="text-3xl font-bold text-gray-800 mb-2">
                 {profile?.displayName || 'Anonymous User'}
               </h1>
-              
+
               <div className="space-y-2 text-gray-600">
                 {profile?.birthYear && (
                   <p className="flex items-center gap-2 justify-center md:justify-start">
@@ -339,21 +339,21 @@ export default function ProfilePage() {
                     <span>Age: {getAge(profile.birthYear)} ({profile.birthYear})</span>
                   </p>
                 )}
-                
+
                 {profile?.school && (
                   <p className="flex items-center gap-2 justify-center md:justify-start">
                     <span>🎓</span>
                     <span>{profile.school}</span>
                   </p>
                 )}
-                
+
                 {profile?.className && (
                   <p className="flex items-center gap-2 justify-center md:justify-start">
                     <span>📚</span>
                     <span>Class: {profile.className}</span>
                   </p>
                 )}
-                
+
                 <div className="flex items-center gap-2 justify-center md:justify-start">
                   <span>👛</span>
                   <span>{formatWalletAddress(profile?.defaultWallet || null)}</span>
@@ -399,7 +399,7 @@ export default function ProfilePage() {
                     {syncing ? '⏳ Syncing...' : '🔄 Sync Now'}
                   </button>
                 </div>
-                
+
                 <button
                   onClick={() => setShowNfts(!showNfts)}
                   className="px-4 py-2 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 transition-colors text-sm"
@@ -445,7 +445,7 @@ export default function ProfilePage() {
                 {/* Featured Certificate Carousel */}
                 <div className="relative mb-8">
                   <div className="overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100">
-                    <div 
+                    <div
                       className="flex transition-transform duration-500 ease-in-out"
                       style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                     >
@@ -472,7 +472,7 @@ export default function ProfilePage() {
                               <h3 className="text-2xl font-bold text-gray-800">
                                 {nft.name || `${nft.collection.name} #${nft.tokenId}`}
                               </h3>
-                              
+
                               <p className="text-gray-600 leading-relaxed">
                                 {nft.description || 'A valuable certificate representing your achievements.'}
                               </p>
@@ -545,9 +545,8 @@ export default function ProfilePage() {
                           <button
                             key={index}
                             onClick={() => setCurrentSlide(index)}
-                            className={`w-3 h-3 rounded-full transition-colors ${
-                              index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
-                            }`}
+                            className={`w-3 h-3 rounded-full transition-colors ${index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
+                              }`}
                           />
                         ))}
                       </div>
@@ -570,12 +569,12 @@ export default function ProfilePage() {
                           🏆
                         </div>
                       )}
-                      
+
                       <div className="p-4">
                         <h4 className="font-semibold text-gray-800 mb-2 truncate">
                           {nft.name || `${nft.collection.name} #${nft.tokenId}`}
                         </h4>
-                        
+
                         <p className="text-sm text-gray-600 mb-3 line-clamp-2">
                           {nft.description || 'A valuable certificate.'}
                         </p>

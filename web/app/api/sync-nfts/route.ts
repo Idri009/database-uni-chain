@@ -296,7 +296,22 @@ export async function GET(request: NextRequest) {
     }
 
     // Format NFT data for frontend
-    const nfts = user.userNfts.map(userNft => {
+    const nfts = user.userNfts.map((userNft: {
+      chainId: number;
+      contractAddress: string;
+      tokenId: string;
+      balance: bigint;
+      lastSeenAt: Date;
+      nft: {
+        metadataJson: any;
+        metadataUri: string | null;
+        collection: {
+          name: string | null;
+          symbol: string | null;
+          standard: string;
+        }
+      }
+    }) => {
       const metadata = userNft.nft.metadataJson as NftMetadata | null
       
       return {

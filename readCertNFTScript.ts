@@ -1,10 +1,9 @@
 // input: address 
-// output: edu NFT 
-// goal filter trash NFT and only retrieve edu NFT
+// output: certified NFT using allowlist method
+// goal: filter trash NFT and only retrieve certified NFT from allowlist contracts
 import { ethers } from "ethers";
 import axios from "axios";
 import dotenv from "dotenv";
-import eduHubJson from "./EduHub.json";
 
 // Load environment variables
 dotenv.config({ path: './web/.env' });
@@ -12,7 +11,7 @@ dotenv.config({ path: './web/.env' });
 // --- CONFIGURATION FROM ENV ---
 const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
 const ALCHEMY_NETWORK = process.env.ALCHEMY_NETWORK || "base-sepolia";
-const eduHubAddress = process.env.EDUHUB_CONTRACT;
+const CERT_CONTRACTS = process.env.CERT_CONTRACTS?.split(',').map(addr => addr.trim().toLowerCase()) || [];
 const userAddress = process.env.TEST_USER_ADDRESS || "0x286db307079C9C92b55D20b33e4eAB6d2A588E54";
 
 // IPFS Gateways to try
@@ -28,8 +27,8 @@ const IPFS_GATEWAYS = [
 if (!ALCHEMY_API_KEY) {
   throw new Error("ALCHEMY_API_KEY is required in .env file");
 }
-if (!eduHubAddress) {
-  throw new Error("EDUHUB_CONTRACT is required in .env file");
+if (CERT_CONTRACTS.length === 0) {
+  throw new Error("CERT_CONTRACTS is required in .env file");
 }
 
 const provider = new ethers.JsonRpcProvider(`https://${ALCHEMY_NETWORK}.g.alchemy.com/v2/${ALCHEMY_API_KEY}`);
@@ -66,11 +65,6 @@ async function fetchMetadataWithFallback(tokenURI: string) {
 }
 
 async function main() {
-  if (!eduHubAddress) {
-    console.error("EduHub contract address not found in environment variables");
-    return;
-  }
-  
   // Allow command line argument for user address
   const targetAddress = process.argv[2] || userAddress;
   if (!targetAddress) {
@@ -78,30 +72,27 @@ async function main() {
     return;
   }
 
-  console.log(`🔍 Searching EduHub NFTs for address: ${targetAddress}`);
-  console.log(`🏫 EduHub Contract: ${eduHubAddress}`);
+  console.log(`🔍 Searching Certified NFTs (Allowlist Mode) for address: ${targetAddress}`);
+  console.log(`📋 Certificate Contracts: ${CERT_CONTRACTS.length} contracts`);
+  CERT_CONTRACTS.forEach((contract, i) => {
+    console.log(`  ${i + 1}. ${contract}`);
+  });
   console.log(`⚡ Network: ${ALCHEMY_NETWORK}`);
-  console.log("=".repeat(50));
+  console.log("=".repeat(60));
   
-  const eduHub = new ethers.Contract(eduHubAddress, eduHubJson.abi, provider);
   const nfts = await getAllNFTsForAddress(targetAddress);
   
   console.log(`📦 Total NFTs found: ${nfts.length}`);
   
-  const eduNFTs: any[] = [];
+  const certifiedNFTs: any[] = [];
 
   for (const nft of nfts) {
-    const nftAddress = nft.contract.address;
-    let isEdu = false;
-    try {
-      isEdu = await eduHub.isEduNFT(nftAddress);
-    } catch (e) {
-      console.log(`⚠️  Failed to check isEduNFT for ${nftAddress}: ${e}`);
-      continue; // skip if call fails
-    }
+    const nftAddress = nft.contract.address.toLowerCase();
     
-    if (isEdu) {
-      console.log(`✅ Found EduNFT: ${nft.contract.address} Token #${nft.tokenId}`);
+    // Check if contract is in allowlist
+    if (CERT_CONTRACTS.includes(nftAddress)) {
+      console.log(`✅ Found Certified NFT: ${nft.contract.address} Token #${nft.tokenId}`);
+      
       // Get tokenURI and metadata
       let tokenURI = "";
       try {
@@ -111,28 +102,26 @@ async function main() {
           provider
         );
         tokenURI = await nftContract.tokenURI(nft.tokenId);
-        // If tokenURI is IPFS, convert to gateway URL
-        if (tokenURI.startsWith("ipfs://")) {
-          tokenURI = tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
-        }
         
         console.log(`🔗 Token URI: ${tokenURI}`);
         
         const meta = await fetchMetadataWithFallback(tokenURI);
-        eduNFTs.push({ ...nft, metadata: meta, tokenURI });
+        certifiedNFTs.push({ ...nft, metadata: meta, tokenURI });
         console.log(`  📄 Name: ${meta?.name || 'Unnamed'}`);
         console.log(`  📝 Description: ${meta?.description || 'No description'}`);
       } catch (e) {
         console.log(`⚠️  Failed to get metadata for ${nftAddress}#${nft.tokenId}: ${e}`);
-        eduNFTs.push({ ...nft, metadata: null, tokenURI });
+        certifiedNFTs.push({ ...nft, metadata: null, tokenURI });
       }
+    } else {
+      console.log(`⏭️  Skipping non-certified contract: ${nft.contract.address}`);
     }
   }
 
-  console.log("=".repeat(50));
-  console.log(`🎓 EduHub NFTs found: ${eduNFTs.length}`);
+  console.log("=".repeat(60));
+  console.log(`🎓 Certified NFTs found: ${certifiedNFTs.length}`);
   console.log("\n📋 Summary:");
-  eduNFTs.forEach((nft, index) => {
+  certifiedNFTs.forEach((nft, index) => {
     console.log(`${index + 1}. ${nft.metadata?.name || 'Unnamed'}`);
     console.log(`   Contract: ${nft.contract.address}`);
     console.log(`   Token ID: ${nft.tokenId}`);
@@ -141,7 +130,7 @@ async function main() {
     console.log("");
   });
   
-  return eduNFTs;
+  return certifiedNFTs;
 }
 
 main().catch(console.error);

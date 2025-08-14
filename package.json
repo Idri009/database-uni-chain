@@ -12,10 +12,13 @@
     "build": "pnpm --filter web build",
     "db:migrate": "pnpm --filter db migrate",
     "db:studio": "pnpm --filter db studio",
-    "db:reset": "pnpm --filter db reset"
+    "db:reset": "pnpm --filter db reset",
+    "nft:read": "npx tsx readEduNFTScript.ts",
+    "nft:cert": "npx tsx readCertNFTScript.ts",
+    "nft:test": "node scripts/test-nft-script.js"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^20.19.10",
     "typescript": "^5.0.0"
   },
   "engines": {
@@ -25,6 +28,7 @@
   "packageManager": "pnpm@9.1.2+sha256.19c17528f9ca20bd442e4ca42f00f1b9808a9cb419383cd04ba32ef19322aba7",
   "dependencies": {
     "axios": "^1.11.0",
+    "dotenv": "^17.2.1",
     "ethers": "^6.15.0"
   }
 }

@@ -49,7 +49,7 @@ export default function Home() {
 
   const signInWithEthereum = async () => {
     if (!address) return;
-    
+
     setIsSigningIn(true);
     try {
       // 1. Get nonce
@@ -120,15 +120,15 @@ export default function Home() {
               Successfully authenticated with UNI Chain Profile
             </p>
           </div>
-          
+
           {/* User Info */}
           <div className="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
             <h3 className="font-semibold text-gray-800 mb-3">👤 Profile Information</h3>
             <div className="flex items-center gap-4 mb-3">
               {user.avatarCid ? (
-                <img 
-                  src={`https://gateway.pinata.cloud/ipfs/${user.avatarCid}`} 
-                  alt="Avatar" 
+                <img
+                  src={`https://gateway.pinata.cloud/ipfs/${user.avatarCid}`}
+                  alt="Avatar"
                   className="w-16 h-16 rounded-full object-cover border-2 border-green-300"
                 />
               ) : (
@@ -192,7 +192,7 @@ export default function Home() {
               <p className="text-sm text-gray-500">No NFT certificates found. Connect your wallet to sync your certificates.</p>
             )}
           </div>
-          
+
           {/* Actions */}
           <div className="space-y-3">
             <ConnectButton />
@@ -215,7 +215,7 @@ export default function Home() {
               🚪 Sign Out
             </button>
           </div>
-          
+
           <div className="text-xs text-gray-500 space-y-1 mt-6 text-center">
             <p>🌐 Network: Base Sepolia (84532)</p>
             <p>✅ Authenticated via SIWE</p>
@@ -237,7 +237,7 @@ export default function Home() {
             Connect your wallet and sign in to manage your academic profile and view your NFT certificates on Base Sepolia testnet
           </p>
         </div>
-        
+
         <div className="mb-6">
           <ConnectButton />
         </div>
@@ -256,7 +256,7 @@ export default function Home() {
             </p>
           </div>
         )}
-        
+
         <div className="text-xs text-gray-500 space-y-1">
           <p>🌐 Network: Base Sepolia Testnet (84532)</p>
           <p>💼 Supports MetaMask & other wallets</p>

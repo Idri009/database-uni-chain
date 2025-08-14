@@ -20,7 +20,7 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [uploading, setUploading] = useState(false);
-  
+
   // Form states
   const [formData, setFormData] = useState({
     displayName: '',
@@ -83,7 +83,7 @@ export default function ProfilePage() {
 
       if (response.ok) {
         const { cid } = await response.json();
-        
+
         // Update profile with new avatar CID
         await updateProfile({ avatarCid: cid });
         alert('Avatar uploaded successfully!');
@@ -167,9 +167,9 @@ export default function ProfilePage() {
           <div className="mb-8 text-center">
             <div className="mb-4">
               {profile?.avatarUrl ? (
-                <img 
-                  src={profile.avatarUrl} 
-                  alt="Avatar" 
+                <img
+                  src={profile.avatarUrl}
+                  alt="Avatar"
                   className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-blue-200"
                 />
               ) : (
@@ -178,7 +178,7 @@ export default function ProfilePage() {
                 </div>
               )}
             </div>
-            
+
             <input
               type="file"
               accept="image/*"
@@ -189,9 +189,8 @@ export default function ProfilePage() {
             />
             <label
               htmlFor="avatar-upload"
-              className={`inline-block px-4 py-2 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-blue-600 transition-colors ${
-                uploading ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+              className={`inline-block px-4 py-2 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-blue-600 transition-colors ${uploading ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
             >
               {uploading ? '⏳ Uploading...' : '📷 Change Avatar'}
             </label>
@@ -260,9 +259,8 @@ export default function ProfilePage() {
               <button
                 type="submit"
                 disabled={updating}
-                className={`flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors ${
-                  updating ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                className={`flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors ${updating ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
               >
                 {updating ? '⏳ Updating...' : '💾 Save Changes'}
               </button>

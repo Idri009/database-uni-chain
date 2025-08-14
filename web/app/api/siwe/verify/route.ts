@@ -54,7 +54,10 @@ export async function POST(req: NextRequest) {
         include: { wallets: true },
       });
       
-      wallet = user.wallets[0];
+      wallet = {
+        ...user.wallets[0],
+        user
+      };
     } else {
       // Update existing wallet verification
       wallet = await prisma.wallet.update({

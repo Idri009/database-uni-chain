@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "name": "uni-chain-profile",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@database-url",
+    "SESSION_SECRET": "@session-secret",
+    "ALCHEMY_API_KEY": "@alchemy-api-key",
+    "ALCHEMY_NETWORK": "@alchemy-network",
+    "CHAIN_ID": "@chain-id",
+    "PINATA_JWT": "@pinata-jwt",
+    "EDUHUB_CONTRACT": "@eduhub-contract",
+    "CERT_CONTRACTS": "@cert-contracts",
+    "NEXT_PUBLIC_CHAIN_ID": "@next-public-chain-id",
+    "NEXT_PUBLIC_APP_NAME": "@next-public-app-name",
+    "NEXT_PUBLIC_APP_URL": "@next-public-app-url"
+  },
+  "build": {
+    "env": {
+      "DATABASE_URL": "@database-url"
+    }
+  },
+  "functions": {
+    "web/app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  }
+}

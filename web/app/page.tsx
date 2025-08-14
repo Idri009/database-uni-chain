@@ -112,11 +112,11 @@ export default function Home() {
     const nftCount = user.userNfts?.length || 0;
     const walletCount = user.wallets?.length || 0;
     const completionPercentage = Math.round(
-      (Number(!!user.displayName) + 
-       Number(!!user.school) + 
-       Number(!!user.className) + 
-       Number(!!user.birthYear) + 
-       Number(!!user.avatarCid)) / 5 * 100
+      (Number(!!user.displayName) +
+        Number(!!user.school) +
+        Number(!!user.className) +
+        Number(!!user.birthYear) +
+        Number(!!user.avatarCid)) / 5 * 100
     );
 
     return (
@@ -178,14 +178,14 @@ export default function Home() {
         {/* Main Dashboard */}
         <div className="max-w-7xl mx-auto px-4 pb-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
+
             {/* Profile Card */}
             <div className="lg:col-span-1">
               <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
                   👤 Profile Overview
                 </h2>
-                
+
                 <div className="text-center mb-6">
                   {user.avatarCid ? (
                     <img
@@ -198,17 +198,17 @@ export default function Home() {
                       {user.displayName ? user.displayName.slice(0, 2).toUpperCase() : '👤'}
                     </div>
                   )}
-                  
+
                   <h3 className="text-xl font-bold text-gray-800">
                     {user.displayName || 'Anonymous Scholar'}
                   </h3>
-                  
+
                   {user.school && (
                     <p className="text-gray-600 flex items-center justify-center gap-1">
                       🎓 {user.school}
                     </p>
                   )}
-                  
+
                   {user.className && (
                     <p className="text-gray-600 flex items-center justify-center gap-1">
                       📚 {user.className}
@@ -221,17 +221,17 @@ export default function Home() {
                     <span className="text-gray-600">Birth Year</span>
                     <span className="font-medium">{user.birthYear || 'Not set'}</span>
                   </div>
-                  
+
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
                     <span className="text-gray-600">Profile ID</span>
                     <span className="font-mono text-xs">{user.id.slice(0, 8)}...</span>
                   </div>
-                  
+
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
                     <span className="text-gray-600">Default Wallet</span>
                     <span className="font-mono text-xs">
-                      {user.defaultWallet ? 
-                        `${user.defaultWallet.slice(0, 6)}...${user.defaultWallet.slice(-4)}` : 
+                      {user.defaultWallet ?
+                        `${user.defaultWallet.slice(0, 6)}...${user.defaultWallet.slice(-4)}` :
                         'Not set'
                       }
                     </span>
@@ -241,7 +241,7 @@ export default function Home() {
                     <span className="text-gray-600">Completion</span>
                     <div className="flex items-center gap-2">
                       <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div 
+                        <div
                           className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300"
                           style={{ width: `${completionPercentage}%` }}
                         ></div>
@@ -306,7 +306,7 @@ export default function Home() {
                               🏆
                             </div>
                           )}
-                          
+
                           <div className="flex-1 text-center md:text-left">
                             <div className="text-xs text-yellow-600 font-medium mb-1">⭐ FEATURED CERTIFICATE</div>
                             <h3 className="text-lg font-bold text-gray-800 mb-2">
@@ -351,12 +351,12 @@ export default function Home() {
                               #{userNft.tokenId}
                             </div>
                           </div>
-                          
+
                           <div className="p-4">
                             <h4 className="font-semibold text-gray-800 mb-2 truncate">
                               {userNft.nft?.metadataJson?.name || `Certificate #${userNft.tokenId}`}
                             </h4>
-                            
+
                             <p className="text-sm text-gray-600 mb-3 line-clamp-2">
                               {userNft.nft?.metadataJson?.description || 'A valuable certificate representing achievements.'}
                             </p>
@@ -403,7 +403,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
                 💼 Connected Wallets ({walletCount})
               </h2>
-              
+
               {walletCount === 0 ? (
                 <div className="text-center py-8">
                   <div className="text-4xl mb-4">💼</div>
@@ -426,7 +426,7 @@ export default function Home() {
                           )}
                         </div>
                       </div>
-                      
+
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Address:</span>
@@ -434,7 +434,7 @@ export default function Home() {
                             {wallet.address.slice(0, 6)}...{wallet.address.slice(-4)}
                           </span>
                         </div>
-                        
+
                         <div className="flex justify-between">
                           <span className="text-gray-600">Verified:</span>
                           <span className="text-green-600 font-medium">
@@ -459,7 +459,7 @@ export default function Home() {
                 >
                   � Sign Out
                 </button>
-                
+
                 <button
                   onClick={loadUserData}
                   className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
@@ -467,7 +467,7 @@ export default function Home() {
                   � Refresh All Data
                 </button>
               </div>
-              
+
               <div className="text-xs text-gray-500 space-y-1 mt-4">
                 <p>🌐 Network: Base Sepolia Testnet (84532)</p>
                 <p>✅ Authenticated via Sign-In with Ethereum (SIWE)</p>

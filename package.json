@@ -10,12 +10,16 @@
   "scripts": {
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
+    "start": "pnpm --filter web start",
     "db:migrate": "pnpm --filter db migrate",
     "db:studio": "pnpm --filter db studio",
     "db:reset": "pnpm --filter db reset",
     "nft:read": "npx tsx readEduNFTScript.ts",
     "nft:cert": "npx tsx readCertNFTScript.ts",
-    "nft:test": "node scripts/test-nft-script.js"
+    "nft:test": "node scripts/test-nft-script.js",
+    "deploy:prepare": "cp -r db/prisma web/ && echo 'Prisma schema copied to web directory'",
+    "deploy:build": "npm run deploy:prepare && cd web && npm run build",
+    "deploy:env": "echo 'Copy these environment variables to Vercel:' && cat web/.env.example"
   },
   "devDependencies": {
     "@types/node": "^20.19.10",

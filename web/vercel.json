@@ -1,12 +1,6 @@
 {
   "version": 2,
   "name": "uni-chain-profile",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
   "functions": {
     "app/api/**/*.ts": {
       "maxDuration": 30

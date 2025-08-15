@@ -4,12 +4,17 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-// Supabase-optimized Prisma configuration
+// Simplified Supabase configuration
 const createPrismaClient = () => {
+  const baseUrl = process.env.DATABASE_URL?.split('?')[0] || '';
+  const connectionString = `${baseUrl}?prepared_statements=false`;
+  
+  console.log('🔗 Prisma connecting to:', baseUrl.replace(/:[^:@]*@/, ':****@'));
+  
   return new PrismaClient({
     datasources: {
       db: {
-        url: process.env.DATABASE_URL + '?prepared_statements=false&pgbouncer=true&connection_limit=1',
+        url: connectionString,
       },
     },
     log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],

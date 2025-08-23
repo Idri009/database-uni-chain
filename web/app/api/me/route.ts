@@ -4,15 +4,15 @@ import { prisma } from '@/lib/prisma';
 
 export async function GET(req: NextRequest) {
   try {
+
     // Check session
     const session = getSession(req);
     console.log('🔍 Session check in /api/me:', session);
-    
     if (!session) {
       console.log('❌ No session found in /api/me');
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    
+    // ...existing code...
     // Get user with full data
     const user = await prisma.user.findUnique({
       where: { id: session.userId },
@@ -50,11 +50,9 @@ export async function GET(req: NextRequest) {
         },
       },
     });
-    
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
-    
     // Format response
     const response = {
       id: user.id,
@@ -81,7 +79,6 @@ export async function GET(req: NextRequest) {
         },
       })),
     };
-    
     return NextResponse.json(response);
   } catch (error) {
     console.error('API /api/me error:', error);

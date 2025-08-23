@@ -5,11 +5,9 @@ import { prisma } from '@/lib/prisma';
 export async function GET(req: NextRequest) {
   try {
     const session = getSession(req);
-    
     if (!session) {
       return NextResponse.json({ authenticated: false }, { status: 401 });
     }
-    
     // Get user data
     const user = await prisma.user.findUnique({
       where: { id: session.userId },
@@ -23,11 +21,9 @@ export async function GET(req: NextRequest) {
         },
       },
     });
-    
     if (!user) {
       return NextResponse.json({ authenticated: false }, { status: 401 });
     }
-    
     return NextResponse.json({
       authenticated: true,
       user: {

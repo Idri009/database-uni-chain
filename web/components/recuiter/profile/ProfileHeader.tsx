@@ -20,7 +20,7 @@ export default function ProfileHeader() {
 			<div className="flex items-end justify-between px-8 -mt-16 relative">
 				<div className="flex flex-col items-start gap-6">
 					{/* Overlapping Avatar */}
-					<img src="/user-avatar.png" alt="Avatar" className="h-32 w-32 rounded-lg border-4 border-white bg-white shadow-lg" />
+					<img src="/avatar-user.png" alt="Avatar" className="h-32 w-32 rounded-lg border-4 border-white bg-white shadow-lg" />
 					<div className="pb-4 py-8" style={{ color: 'black' }}>
 						<h1 className="text-2xl font-bold mb-2">Tong Thuan Nguyen</h1>
 						<div className="text-gray-600 mb-1">Sinh viên Hệ thống thông tin</div>

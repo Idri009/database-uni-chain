@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../../../components/recuiter/commonShare/NavBar";
 import TopCandidates from "../../../components/recuiter/landingPage/TopCandidates";
 import TrendSkills from "../../../components/recuiter/landingPage/TrendSkills";
-import Footer from "../../../components/recuiter/landingPage/Footer";
+import TopEducation from "@/components/recuiter/commonShare/TopEducation";
 
 const LandingPage = () => (
   <div className="bg-gray-50 min-h-screen">
@@ -19,7 +19,7 @@ const LandingPage = () => (
       </section>
       <TopCandidates />
       <TrendSkills />
-      <Footer />
+      <TopEducation />
     </main>
   </div>
 );

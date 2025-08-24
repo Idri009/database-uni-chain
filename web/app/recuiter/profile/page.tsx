@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import ProfileHeader from "../../../components/recuiter/profile/ProfileHeader";
 import NFTFilterSidebar from "../../../components/recuiter/profile/NFTFilterSidebar";
 import NFTCardGrid from "../../../components/recuiter/profile/NFTCardGrid";
-import Pagination from "../../../components/recuiter/profile/Pagination";
+import Pagination from "../../../components/recuiter/commonShare/Pagination";
 import NavBar from "../../../components/recuiter/commonShare/NavBar";
-import NFTCardToolbar from "@/components/recuiter/profile/NFTCardToolbar";
+import CardToolbar from "@/components/recuiter/commonShare/CardToolbar";
 import ProfileInformation from "@/components/recuiter/profile/ProfileInformation";
 
 export default function ProfilePage() {
@@ -22,7 +22,7 @@ export default function ProfilePage() {
           {/* Sidebar toggle logic */}
           {showSidebar && <NFTFilterSidebar />}
           <div className="flex-1">
-            <NFTCardToolbar onToggleSidebar={() => setShowSidebar((v) => !v)} />
+            <CardToolbar onToggleSidebar={() => setShowSidebar((v) => !v)} />
             <NFTCardGrid />
             <Pagination />
           </div>

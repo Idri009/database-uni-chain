@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaFilter, FaSortAlphaDown, FaSearch } from "react-icons/fa";
 import { FiFilter } from "react-icons/fi";
 
-export default function NFTCardToolbar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
+export default function CardToolbar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   // Example: filter applied state (replace with your actual filter logic)
   const [filterApplied, setFilterApplied] = useState(false);
 

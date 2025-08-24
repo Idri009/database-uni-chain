@@ -1,10 +1,16 @@
+"use client";
 import React from "react";
 
 // Candidate item component for reuse
 const CandidateItem = ({ candidate }: { candidate: typeof candidates[0] }) => (
-  <div key={candidate.rank} className="flex items-center gap-4 mb-2" style={{ color: '#707A83' }}>
+  <div
+    key={candidate.rank}
+    className="flex items-center gap-4 mb-2 cursor-pointer hover:bg-gray-100 rounded px-2"
+    style={{ color: '#707A83' }}
+    onClick={() => window.location.href = '/recuiter/profile'}
+  >
     <span className="font-bold w-4">{candidate.rank}</span>
-    <img src="/next.svg" alt="Avatar" className="h-8 w-8" />
+    <img src="/avatar-user2.png" alt="Avatar" className="h-8 w-8" />
     <div>
       <div className="font-semibold" style={{color:'#04111D'}}>{candidate.name}</div>
       <div className="text-xs" color="#707A83">{candidate.role}</div>
@@ -34,7 +40,7 @@ const TopCandidates = () => (
         <div className="rounded-xl border-2 border-solid flex" style={{ height: '40px'}}>
           <span className="text-sm font-medium px-3 font-semibold self-center" style={{color: "#04111D"}}>Tất cả trường đại học</span>
           {[...Array(5)].map((_, i) => (
-            <button className="ml-2 py-1 rounded flex items-center justify-center">
+            <button key={`logo-btn-${i}`} className="ml-2 py-1 rounded flex items-center justify-center">
               <img src="/logo-UIT.svg" alt="UIT Logo" className="h-5 w-6" />
             </button>
           ))}
@@ -50,6 +56,7 @@ const TopCandidates = () => (
             <span className="">Ứng viên</span>
             <span className="ml-auto">Điểm danh tiếng</span>
           </div>
+
           {candidates.slice(startIdx, startIdx + 5).map(c => (
             <CandidateItem key={c.rank} candidate={c} />
           ))}

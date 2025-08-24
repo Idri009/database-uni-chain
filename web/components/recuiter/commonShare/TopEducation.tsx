@@ -14,7 +14,7 @@ const education = {
   ],
 };
 
-const Footer = () => (
+const TopEducation = () => (
   
   <section className="bg-white p-6 pb-0 rounded shadow mt-6">
     <h2 className="text-lg font-semibold mb-4" style={{ color: '#707A83' }}>Kĩ năng xu hướng</h2>
@@ -44,4 +44,4 @@ const Footer = () => (
   </section>
 );
 
-export default Footer;
+export default TopEducation;

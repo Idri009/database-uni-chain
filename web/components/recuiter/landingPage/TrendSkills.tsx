@@ -34,7 +34,7 @@ const TrendSkills = () => (
           <button className="ml-2 px-3 py-1 rounded text-sm font-semibold " style={{color:"#04111D"}}>Kỹ năng mềm</button>
           <button className="ml-2 px-3 py-1 rounded text-sm font-semibold " style={{color:"#04111D"}}>Ngôn ngữ</button>
         </div>
-  <button className="rounded-xl border-2 border-solid border-gray-200 ml-2 px-3 py-1 rounded text-sm font-semibold " style={{ height: '40px', color: '#04111D' }}>Tất cả</button>
+        <button className="rounded-xl border-2 border-solid border-gray-200 ml-2 px-3 py-1 rounded text-sm font-semibold " style={{ height: '40px', color: '#04111D' }}>Tất cả</button>
       </nav>
     </div>
     <div className="flex gap-4 overflow-x-auto">

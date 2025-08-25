@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 const skills = [
@@ -9,7 +10,7 @@ const skills = [
 ];
 
 const SkillItems = ({ skill }: { skill: typeof skills[0] }) => (
-  <div key={skill.id} className="min-w-[220px] bg-gray-100 rounded p-4 flex flex-col items-center">
+  <div key={skill.id} onClick={() => window.location.href = "/recuiter/skill"} className="min-w-[220px] bg-gray-100 rounded p-4 flex flex-col items-center">
     <div className="font-semibold mb-1 self-start" style={{color: "#000000"}}>#{skill.id} <br></br> {skill.name}</div>
       <div className="text-xs text-gray-500 self-start">
         Số lượng người học: 

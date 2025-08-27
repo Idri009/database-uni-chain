@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import NFTDetailsDescription from "./NFTDetailsDescription";
 import NFTDetailsSkills from "./NFTDetailsSkills";
+import { NFTDetail } from "../commonShare/allTypes";
 
-export default function NFTDetailsTabs() {
+const NFTDetailsTabs = ({NFTDetail}: {NFTDetail: NFTDetail}) => {
   const [tab, setTab] = useState("description");
   return (
     <div className="bg-white rounded-xl shadow p-6 min-h-[300px]">
@@ -20,7 +21,9 @@ export default function NFTDetailsTabs() {
           Skills
         </button>
       </div>
-      {tab === "description" ? <NFTDetailsDescription /> : <NFTDetailsSkills />}
+      {tab === "description" ? <NFTDetailsDescription NFTDetail={NFTDetail}/> : <NFTDetailsSkills NFTDetail={NFTDetail}/>}
     </div>
   );
 }
+
+export default NFTDetailsTabs;

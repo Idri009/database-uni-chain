@@ -10,7 +10,7 @@ const NavBar = () => (
           <rect y="18" width="24" height="2" rx="1" fill="#333" />
         </svg>
       </button>
-      <img src="/logo-UIT.svg" alt="Logo" className="h-8 w-9" />
+      <img src="/logo-UIT.svg" onClick={() => window.location.href='/recuiter/landingPage'} alt="Logo" className="h-8 w-9 cursor-pointer" />
     </div>
     <div className="relative flex-1 flex justify-center">
       <input
@@ -20,6 +20,7 @@ const NavBar = () => (
         style={{ color: '#000000' }}
       />
     </div>
+    <div className="w-23"></div>
   </nav>
 );
 

@@ -1,8 +1,14 @@
+"use client";
 import React from "react";
 import NavBar from "../../../components/recuiter/commonShare/NavBar";
 import TopCandidates from "../../../components/recuiter/landingPage/TopCandidates";
 import TrendSkills from "../../../components/recuiter/landingPage/TrendSkills";
 import TopEducation from "@/components/recuiter/commonShare/TopEducation";
+
+const sampleSchool = {
+  name: "University of Information Technology",
+  logoUrl: "/logo-UIT.svg"
+};
 
 const LandingPage = () => (
   <div className="bg-gray-50 min-h-screen">
@@ -15,9 +21,9 @@ const LandingPage = () => (
           <li>Nơi lưu trữ hồ sơ học tập, kỹ năng, thành tích đáng tin cậy</li>
           <li>Giúp tiết kiệm thời gian sàng lọc ứng viên</li>
         </ul>
-        <button className="bg-white text-blue-700 px-6 py-2 rounded font-semibold self-end" style={{background: '#FFFFFF3D', color: "#FFFFFF"}}>Khám phá hồ sơ ứng viên</button>
+        <button className="bg-white text-blue-700 px-6 py-2 rounded font-semibold self-end cursor-pointer" onClick = {() => window.location.href='/recuiter/allCandidates' } style={{background: '#FFFFFF3D', color: "#FFFFFF"}}>Khám phá hồ sơ ứng viên</button>
       </section>
-      <TopCandidates />
+      <TopCandidates school={sampleSchool}/>
       <TrendSkills />
       <TopEducation />
     </main>

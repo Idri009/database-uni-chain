@@ -7,7 +7,7 @@ export default function CardToolbar({ onToggleSidebar }: { onToggleSidebar: () =
   const [filterApplied, setFilterApplied] = useState(false);
 
   return (
-    <div className="flex items-center justify-between bg-white rounded shadow px-4 py-2 mb-4">
+    <div className="  hover:bg-neutral-100 flex items-center justify-between bg-white rounded shadow px-4 py-2 mb-4">
       <div className="flex items-center gap-4">
         {/* Filter sidebar toggle */}
         <button

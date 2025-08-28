@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import SkillCard from "./SkillCard";
 
 const education = {
   name: "ĐẠI HỌC CÔNG NGHỆ THÔNG TIN – ĐHQG TP. HỒ CHÍ MINH",
@@ -17,8 +19,11 @@ const education = {
 const TopEducation = () => (
   
   <section className="bg-white p-6 pb-0 rounded shadow mt-6">
-    <h2 className="text-lg font-semibold mb-4" style={{ color: '#707A83' }}>Kĩ năng xu hướng</h2>
-    <section className="bg-blue-700 pt-5 text-white p-6 pt-0 rounded shadow mt-6">
+    <div className="flex items-center justify-between">
+      <h2 className="text-lg font-semibold" style={{ color: '#707A83' }}>Đơn vị giáo dục hàng đầu</h2>
+      <button onClick={ () => window.location.href='/recuiter/allSchool' } className="rounded-xl border-2 border-solid border-gray-200 ml-2 px-4 py-2 rounded text-sm font-semibold cursor-pointer hover:bg-gray-100 text-black">Tất cả</button>
+    </div>
+    <section className="pt-5 text-white p-6 pt-0 rounded shadow mt-4" style={{ background: '#005BB5'}}>
       <h2 className="text-lg font-bold mb-2">{education.name}</h2>
       <div className="mb-2">{education.decripstion}</div>
       <div className="flex items-center gap-4 mb-4">
@@ -27,16 +32,11 @@ const TopEducation = () => (
           <div className="mb-2 font-bold">Số lượng chứng chỉ phát hành: {education.certificates.toLocaleString()}</div>
           <div className="mb-2 font-bold">Số lượng sinh viên gia nhập: {education.students.toLocaleString()}</div>
           <div className="mb-2 font-bold">Website: <a href={education.website} className="underline text-white" target="_blank" rel="noopener noreferrer">{education.website}</a></div>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-2 rounded self-end" style={{ color: '#FFFF' }}>Tìm hiểu thêm</button>
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-2 rounded self-end cursor-pointer" onClick={() => window.location.href = "/recuiter/school"} style={{ color: '#FFFF' }}>Tìm hiểu thêm</button>
         </div>
         <div className="flex gap-4 mt-4">
           {education.skills.map((skill, idx) => (
-            <div key={idx} className="bg-white text-blue-700 rounded p-4 min-w-[220px] flex flex-col items-center h-96">
-              <img src="/next.svg" alt="Skill" className="h-16 w-16 mb-2" />
-              <div className="font-semibold mb-1">{skill.name}</div>
-              <div className="text-xs">{skill.type}</div>
-              <div className="text-xs">{skill.participants.toLocaleString()} sinh viên tham gia</div>
-            </div>
+            <SkillCard key={idx} />
           ))}
         </div>
         </div>

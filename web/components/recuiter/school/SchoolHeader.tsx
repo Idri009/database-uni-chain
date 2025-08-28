@@ -1,7 +1,8 @@
 import React from "react";
 import { FaGlobe, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { school } from "./SchoolType";
 
-export default function SchoolHeader() {
+const SchoolHeader = ({school}: {school: school}) => {
   return (
     <div className="text-center py-8">
       <div className="flex justify-center items-center mb-4">
@@ -34,3 +35,5 @@ export default function SchoolHeader() {
     </div>
   );
 }
+
+export default SchoolHeader;

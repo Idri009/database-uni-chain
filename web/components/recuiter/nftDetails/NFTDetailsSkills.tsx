@@ -1,17 +1,15 @@
 import React from "react";
+import { NFTDetail } from "../commonShare/allTypes";
 
-export default function NFTDetailsSkills() {
-  return (
-    <div>
-      <div className="font-semibold mb-2">Skills</div>
-      <ul className="list-disc pl-6 text-sm text-gray-700">
-        <li>Smart Contract Development (Solidity, Hardhat, Truffle)</li>
-        <li>Decentralized Application (DApp) Architecture</li>
-        <li>Token Standards (ERC-20, ERC-721, ERC-1155)</li>
-        <li>Blockchain Security Principles</li>
-        <li>Frontend–Blockchain Integration (Web3.js, Ethers.js)</li>
-        <li>Version Control (Git, GitHub)</li>
-      </ul>
-    </div>
-  );
-}
+const NFTDetailsSkills = ({NFTDetail}: {NFTDetail: NFTDetail}) => (
+  <div>
+    <div className="font-semibold mb-2">Skills</div>
+    <ul className="list-disc pl-6 text-sm text-gray-700">
+      {NFTDetail.skills.slice(0,NFTDetail.skills.length).map((skill, idx) => (
+        <li key={idx}>{skill}</li>
+      ))}
+    </ul>
+  </div>
+);
+
+export default NFTDetailsSkills;

@@ -1,16 +1,45 @@
 import React from "react";
+import { NFTDetail } from "../commonShare/allTypes";
 
-export default function NFTCard() {
-  return (
-    <div className="bg-white rounded shadow p-4 flex flex-col items-center min-w-[220px] h-96 text-black">
-      <img src="/certificate.png" alt="NFT" className="h-64 w-full mb-2 rounded object-cover" />
-      <div className="font-bold mb-1 self-start">UIT Diploma</div>
-      <div className="text-xs mb-1 self-start">Type: <b>Diploma</b></div>
-      <div className="flex text-xs mb-1 self-start">
-        <div className="text-xs mb-1 self-start">Issuer: <b>UIT</b></div>
-        <div className="text-xs mb-1 self-end">Issue date: <b>01/01/2025</b></div>
-
+const NFTCard = ({ NFTDetail }: { NFTDetail: NFTDetail }) => (
+    <div className="bg-white rounded-xl shadow p-6 w-96">
+      <img
+        src="/certificate.png"
+        alt="NFT"
+        className="w-full h-48 object-cover rounded-lg mb-4"
+      />
+      <div className="font-bold text-lg mb-2 text-black">{NFTDetail.name}</div>
+      <div className="text-xs mb-1 text-gray-500">Owner</div>
+      <div className="font-mono text-sm mb-2 text-black">{NFTDetail.ownerAddress}</div>
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-xs text-gray-500">Type</span>
+        <span className="font-bold text-black">{NFTDetail.type}</span>
+        <span className="ml-2 px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs">
+          {NFTDetail.status}
+        </span>
+      </div>
+      <div className="text-xs mb-1 text-gray-500">Issuer</div>
+      <div className="font-bold text-sm mb-2 text-black">{NFTDetail.issuer}</div>
+      <div className="text-xs mb-1 text-gray-500">Issue date</div>
+      <div className="font-bold text-sm mb-2 text-black">{NFTDetail.issueDate}</div>
+      <div className="text-xs mb-1 text-gray-500">Expired date</div>
+      <div className="font-bold text-sm mb-2 text-black">{NFTDetail.expiredDate}</div>
+      <div className="text-xs mb-1 text-gray-500">Contract</div>
+      <div className="font-mono text-sm mb-2 flex items-center gap-2 text-black">
+        {NFTDetail.contractAddress}{" "}
+        <a href="#" className="text-gray-400">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+            <path
+              d="M14 3h7v7m-1.414-5.586L10 14.414M5 19h7v-7"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </a>
       </div>
     </div>
-  );
-}
+);
+
+export default NFTCard;

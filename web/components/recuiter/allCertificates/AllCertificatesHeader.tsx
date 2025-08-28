@@ -1,6 +1,6 @@
 import React from "react";
 import { FaGlobe, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import { school } from "./SchoolType";
+import { school } from "./AllCertificatesType";
 
 function formatNumber(num: number): string {
   if (num >= 1000000) {
@@ -12,7 +12,7 @@ function formatNumber(num: number): string {
   return num.toString();
 }
 
-const SchoolHeader = ({school}: {school: school}) => {
+const AllCertificatesHeader = ({school}: {school: school}) => {
   return (
     <div className="text-center py-8">
       <div className="flex justify-center items-center mb-4">
@@ -46,4 +46,4 @@ const SchoolHeader = ({school}: {school: school}) => {
   );
 }
 
-export default SchoolHeader;
+export default AllCertificatesHeader;

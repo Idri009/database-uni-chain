@@ -1,10 +1,6 @@
 import React from "react";
-
-type student = {
-  name: string;
-  role: string;
-  count: number;
-};
+import StudentCard from "./StudentCard";
+import { student } from "./SchoolType";
 
 export default function SchoolTopStudents({students}: {students: student[]}) {
   return (
@@ -22,33 +18,8 @@ export default function SchoolTopStudents({students}: {students: student[]}) {
                   </tr>
                 </thead>
                 <tbody>
-                  {students.slice(col * 5, col * 5 + 5).map((student, idx) => (
-                    <tr
-                      key={idx}
-                      onClick={() =>
-                        (window.location.href = "/recuiter/profile")
-                      }
-                      className="border-b last:border-none hover:bg-gray-200 cursor-pointer"
-                    >
-                      <td className=" py-2 flex items-center gap-2">
-                        <img
-                          src="/avatar-user2.png"
-                          alt="Avatar"
-                          className="h-8 w-8 rounded bg-white"
-                        />
-                        <div>
-                          <div className="font-semibold text-black">
-                            {student.name}
-                          </div>
-                          <div className="text-xs text-gray-500">
-                            {student.role}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="py-2 font-bold">
-                        {student.count.toLocaleString()}
-                      </td>
-                    </tr>
+                  {students.slice(col * 5, col * 5 + 5).map((c) => (
+                    <StudentCard student={c} />
                   ))}
                 </tbody>
               </table>

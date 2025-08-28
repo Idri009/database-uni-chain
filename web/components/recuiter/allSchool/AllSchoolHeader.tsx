@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SchoolHeader() {
+export default function AllSchoolHeader() {
   return (
     <div className="text-center py-8">
       <h1 className="text-2xl font-bold mb-2 text-black">

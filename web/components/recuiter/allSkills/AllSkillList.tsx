@@ -10,7 +10,7 @@ const skills: skill[] = Array.from({ length: 20 }).map((_, idx) => ({
   certificates: 5740,
 }));
 
-export default function CandidatesList() {
+export default function AllSkillList() {
   return (
     <div className="bg-white rounded-xl shadow p-6">
       <div className="grid grid-cols-1 gap-2">

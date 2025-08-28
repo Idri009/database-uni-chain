@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { candidate } from "../commonShare/allTypes";
-import CandidateCard from "../candidates/CandidateCard";
+import CandidateCard from "../landingPage/CandidateCard";
 import { array } from "zod";
 import { NFTDetail } from "../commonShare/allTypes";
 

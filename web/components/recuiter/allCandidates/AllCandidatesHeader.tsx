@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CandidatesHeader() {
+export default function AllCandidatesHeader() {
   return (
     <div className="text-center py-8">
       <h1 className="text-2xl font-bold mb-2 text-black">DANH SÁCH ỨNG VIÊN</h1>

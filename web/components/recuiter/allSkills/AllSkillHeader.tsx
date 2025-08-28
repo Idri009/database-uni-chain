@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SkillsHeader() {
+export default function AllSkillHeader() {
   return (
     <div className="text-center py-8">
       <h1 className="text-2xl font-bold mb-2 text-black">DANH SÁCH KỸ NĂNG</h1>

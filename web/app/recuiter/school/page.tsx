@@ -4,17 +4,10 @@ import SchoolCardGrid from "@/components/recuiter/school/SchoolCardGrid";
 import SchoolTopStudents from "@/components/recuiter/school/SchoolTopStudents";
 import Pagination from "@/components/recuiter/commonShare/Pagination";
 import NavBar from "@/components/recuiter/commonShare/NavBar";
-import { school } from "@/components/recuiter/school/SchoolType";
+import { school, student, skill } from "@/components/recuiter/school/SchoolType";
 
 
 export default function SchoolPage() {
-  type skill = {
-    name: string;
-    type: string;
-    level: string;
-    participants: number;
-  };
-
   const sampleSkill: skill = {
     name: "Blockchain Development",
     type: "Bằng cấp",
@@ -33,27 +26,21 @@ export default function SchoolPage() {
     skills: 101,
   };
 
-  type student = {
-    name: string;
-    role: string;
-    count: number;
-  };
-
   const sampleStudents: student[] = [
   {
     name: "Tong Thuan Nguyen",
     role: "Sinh viên Hệ thống thông tin",
-    count: 5740,
+    certificates: 5740,
   },
-  { name: "Gitcoin Presents", role: "Business Analyst", count: 5740 },
-  { name: "Gitcoin Presents", role: "Web3 Developer", count: 5740 },
-  { name: "Gitcoin Presents", role: "Backend Developer", count: 5740 },
-  { name: "Gitcoin Presents", role: "Frontend Developer", count: 5740 },
-  { name: "Gitcoin Presents", role: "UI/UX Designer", count: 5740 },
-  { name: "Gitcoin Presents", role: "Fullstack Developer", count: 5740 },
-  { name: "Gitcoin Presents", role: "Project Manager", count: 5740 },
-  { name: "Gitcoin Presents", role: "Director", count: 5740 },
-  { name: "Gitcoin Presents", role: "Intern", count: 5740 },
+  { name: "Gitcoin Presents", role: "Business Analyst", certificates: 5740 },
+  { name: "Gitcoin Presents", role: "Web3 Developer", certificates: 5740 },
+  { name: "Gitcoin Presents", role: "Backend Developer", certificates: 5740 },
+  { name: "Gitcoin Presents", role: "Frontend Developer", certificates: 5740 },
+  { name: "Gitcoin Presents", role: "UI/UX Designer", certificates: 5740 },
+  { name: "Gitcoin Presents", role: "Fullstack Developer", certificates: 5740 },
+  { name: "Gitcoin Presents", role: "Project Manager", certificates: 5740 },
+  { name: "Gitcoin Presents", role: "Director", certificates: 5740 },
+  { name: "Gitcoin Presents", role: "Intern", certificates: 5740 },
 ];
 
   return (

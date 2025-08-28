@@ -1,8 +1,15 @@
 export type skill = {
-  name: string;
-  type: string;
-  level: string;
-  participants: number;
+name: string;
+type: string;
+level: string;
+participants: number;
+};
+
+export type skillInfo = {
+name: string;
+description: string;
+NFT: skill[];
+participants: number;
 };
 
 export type school = {
@@ -14,9 +21,3 @@ export type school = {
   description: string;
   skills: number;
 };
-
-export type student = {
-  name: string;
-  role: string;
-  certificates: number;
-}

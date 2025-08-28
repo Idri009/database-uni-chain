@@ -1,7 +1,7 @@
 import React from "react";
-import { skill } from "./SchoolType";
+import {skill} from "./SkillType";
 
-const NFTCard = ({skill}: {skill: skill}) => (
+const SkillCard = ({skill}: {skill: skill}) => (
   <div className="bg-white rounded shadow p-4 flex flex-col items-center min-w-[220px] h-96 text-black cursor-pointer hover:bg-gray-200">
     <img
       src="/certificate.png"
@@ -24,4 +24,4 @@ const NFTCard = ({skill}: {skill: skill}) => (
   </div>
 );
 
-export default NFTCard;
+export default SkillCard;
